@@ -13,8 +13,15 @@ const Container = styled.div`
 
 function Box({ children, k, disableCounter, ...props }) {
   const [counter, setCount] = useState([]);
+  const [showSettings, setShowSettings] = useState(false)
+
   return (
-    <div onClick={() => setCount((c) => [...c, new Date()])}
+    showSettings ? <div>
+      <button onClick={() => setShowSettings(false)}>...</button>
+      <button onClick={() => alert(counter.join("\n"))}>Count times</button>
+    </div> :
+
+  <div 
       {...props}
       style={{
         ...(props.style ?? {}),
@@ -23,13 +30,16 @@ function Box({ children, k, disableCounter, ...props }) {
         color: "#fff"
       }}
     >
+      <div onClick={() => setCount((c) => [...c, new Date()])}>
       {children}
+      </div>
       {!disableCounter && (
         <>
-          <div>
+          <div onClick={() => setCount((c) => [...c, new Date()])}>
             {counter.length}
           </div>
-          <button onClick={() => alert(counter.join("\n"))}>...</button>
+          <button onClick={() => setShowSettings(true)}>...</button>
+          {/* <button onClick={() => alert(counter.join("\n"))}>...</button> */}
         </>
       )}
     </div>
