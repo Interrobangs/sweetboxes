@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import  Picker from 'emoji-picker-react'
 import "./App.css";
 import styled from 'styled-components'
-
 
 const Container = styled.div`
   display: grid;
@@ -14,13 +13,11 @@ const Container = styled.div`
 function Box({ children, k, disableCounter, ...props }) {
   const [counter, setCount] = useState([]);
   const [showSettings, setShowSettings] = useState(false)
-
   return (
     showSettings ? <div>
       <button onClick={() => setShowSettings(false)}>...</button>
       <button onClick={() => alert(counter.join("\n"))}>Count times</button>
     </div> :
-
   <div 
       {...props}
       style={{
@@ -56,15 +53,63 @@ const StyledBox = styled(Box)`
   display: grid;
   gap: 1vh;
 `
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback
+  useEffect(() => {
+      savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval
+  useEffect(() => {
+      function tick() {
+          savedCallback.current();
+      }
+      if (delay !== null) {
+          let id = setInterval(tick, delay);
+          return () => clearInterval(id);
+      }
+  }, [delay]);
+}
+
+function add0(num){
+  return num < 10 ? '0' + num : num
+}
+
+function getDateNow(){
+  const d = new Date()
+  const month = d.getMonth() + 1
+  const hours = add0(d.getHours())
+  const minuts = add0(d.getMinutes())
+  const seconds = add0(d.getSeconds())
+  const dateNow = [d.getFullYear(), month, d.getDate()].join('/')
+  const time = [hours, minuts, seconds].join(':')
+  return  dateNow + ' ' + time
+}
+
+function DateNow(){
+  const [date, setDate] = useState([getDateNow()])
+  useInterval(() => {
+    setDate(getDateNow())
+  }, 1000)
+  return (
+    <div>
+      {date}
+    </div>
+  )
+}
 
 export default function App() {
-  const onEmojiClick = (e, emojiObject) => {
-    setBoxes([...boxes, { content: emojiObject.emoji }])
+  const onEmojiClick = (e, obj) => {
+    setBoxes([...boxes, { content: obj.emoji }])
     showEmojiPicker ? setShowEmojiPicker(false) : setShowEmojiPicker(true)
   };
   const [boxes, setBoxes] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   return (
+    <>
+    <DateNow/>
     <Container>
       {boxes.map(({ content }, i) => (
         <StyledBox key={i}>
@@ -77,6 +122,7 @@ export default function App() {
       }
       > + </StyledBox> }
     </Container>
+    </>
   );
 
 
