@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react¨
+import { useEffect, useRef, useState } from 'react'
 import  Picker from 'emoji-picker-react'
 import styled from 'styled-components'
 import "./App.css"
