@@ -11,6 +11,7 @@ const Container = styled.div`
 `
 
 function Box({ children, k, disableCounter, ...props }) {
+  const [boxState, setBoxState] = useState({})
   const [showSettings, setShowSettings] = useState(false)
   const [counter, setCount] = useState([]);
   return (
@@ -70,10 +71,6 @@ function useInterval(callback, delay) {
   }, [delay])
 }
 
-function add0(num){
-  return num < 10 ? '0' + num : num
-}
-
 function getDateNow(){
   const date = new Date()
   // request a weekday along with a long date
@@ -87,9 +84,6 @@ function getDateNow(){
      second: 'numeric'
     };
   const thisDate = new Intl.DateTimeFormat(navigator.language, options).format(date).split(',').join('')
-  const capitalizeFirstLetter = ([ first, ...rest ], locale = navigator.language) =>
-  first.toLocaleUpperCase(locale)
-
   return thisDate[0].toUpperCase() + thisDate.substring(1, thisDate.length)
   // const thisMoment = moment().format('DD MMMM YYYY hh:mm:ss');
   // const d = new Date()
