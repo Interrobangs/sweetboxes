@@ -11,13 +11,17 @@ const Container = styled.div`
 `
 
 function Box({ children, k, disableCounter, ...props }) {
-  // const [boxState, setBoxState] = useState({})
-  const [showSettings, setShowSettings] = useState(false)
-  const [counter, setCount] = useState([]);
+  const [boxState, setBoxState] = useState({
+    showSettings: false,
+    counter: []
+  })
   return (
-    showSettings ? <div>
-      <button onClick={() => setShowSettings(false)}>...</button>
-      <button onClick={() => alert(counter.join("\n"))}>Count times</button>
+    boxState.showSettings ? <div>
+      <button onClick={() => setBoxState({
+        ...boxState,
+        showSettings: false
+      })}>...</button>
+      <button onClick={() => alert(boxState.counter.join("\n"))}>Count times</button>
     </div> :
   <div 
       {...props}
@@ -28,15 +32,19 @@ function Box({ children, k, disableCounter, ...props }) {
         color: "#fff"
       }}
     >
-      <div onClick={() => setCount((c) => [...c, new Date()])}>
+      <div onClick={() => setBoxState({...boxState, counter: [...boxState.counter, getDateNow()]})}>
       {children}
       </div>
       {!disableCounter && (
         <>
-          <div onClick={() => setCount((c) => [...c, new Date()])}>
-            {counter.length}
+          <div>
+            {boxState.counter.length}
+            {console.log(boxState.counter.length)}
           </div>
-          <button onClick={() => setShowSettings(true)}>...</button>
+          <button onClick={() => setBoxState({
+        ...boxState,
+        showSettings: true
+      })}>...</button>
           {/* <button onClick={() => alert(counter.join("\n"))}>...</button> */}
         </>
       )}
