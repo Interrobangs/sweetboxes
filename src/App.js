@@ -44,10 +44,12 @@ function App() {
 const Child = param => {
     const ref = useRef();
     const [showContinue, setShowContinue] = useState(false)
+    const [removeInput, setRemoveInput] = useState(false)
     const handleKeyDown = (e) => {
         if(e.key === 'Enter'){
             param.setName(ref.current.value)
             setShowContinue(false)
+            setRemoveInput(true)
             ref.current.value = ''
         }
     }
@@ -56,12 +58,15 @@ const Child = param => {
     }
     return (
         <>
-            <StyledWhatIsYourNameInput 
-                placeholder = 'Your name'
-                ref = {ref}
-                onKeyDown = {handleKeyDown}
-                onChange = {onChangeHandler}
-            />
+            {
+                removeInput ?  '' :  
+                    <StyledWhatIsYourNameInput 
+                        placeholder = 'Your name'
+                        ref = {ref}
+                        onKeyDown = {handleKeyDown}
+                        onChange = {onChangeHandler}
+                    />
+            }
             {
                 showContinue ? <StyledWhatIsYourNameContinue>Please press enter...</StyledWhatIsYourNameContinue> : ''
             }
