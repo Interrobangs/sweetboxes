@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledWhatIsYourNameText = styled.p`
     font-size: 27px;
@@ -7,4 +7,5 @@ const StyledWhatIsYourNameText = styled.p`
     left: 50%;
     transform: translate(-50%, -50%);
 `;
+
 export { StyledWhatIsYourNameText };

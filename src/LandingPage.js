@@ -7,19 +7,19 @@ const StyledWhatIsYourNameContainer = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
 const StyledWhatIsYourNameInput = styled.input`
     font-size: 27px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    ::placeholder {
-        text-align: center;
-    }
 `;
+
 const StyledWhatIsYourNameContinue = styled(StyledWhatIsYourNameText)`
     top: 55%;
-    opacity: 0.2;
+    opacity: 1;
+    color: #fff;
 `;
 const LandingPage = param => {
     return (
@@ -35,8 +35,9 @@ const Child = param => {
     const ref = useRef();
     const [showContinue, setShowContinue] = useState(false);
     const [removeInput, setRemoveInput] = useState(false);
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
+    const handleKeyContinue = (e) => {
+        if (ref.current.value !== '' && e.key === 'Enter' || e.type === 'click') { 
+            console.log()
             param.setName(ref.current.value);
             setShowContinue(false);
             setRemoveInput(true);
@@ -49,13 +50,16 @@ const Child = param => {
     return (
         <>
             {removeInput ? '' :
+                <div>
                 <StyledWhatIsYourNameInput
                     placeholder='Your name'
                     ref={ref}
-                    onKeyDown={handleKeyDown}
+                    onKeyDown={handleKeyContinue}
                     onChange={onChangeHandler}
-                     />}
-            {showContinue ? <StyledWhatIsYourNameContinue>Press ⎆</StyledWhatIsYourNameContinue> : ''}
+                     />
+                </div>
+                     }
+            {showContinue ? <StyledWhatIsYourNameContinue onClick={handleKeyContinue}>Press ⎆</StyledWhatIsYourNameContinue> : ''}
         </>
     );
 };
