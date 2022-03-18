@@ -45,7 +45,7 @@ const Child = param => {
         return true;
     }
     function hasSymbols(str){
-        const format = /[ `!@#€卐$%^&§*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        const format = /[ `!@#€卐$%^&§*()_+\-=[\]{};':"\\|,.<>/?~]/;
         return !format.test(str)
     }
     const ref = useRef();
