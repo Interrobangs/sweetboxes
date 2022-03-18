@@ -9,7 +9,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import AuthRoute from "./components/AuthRoute"
 import Login from "./Login"
 
-
 initializeApp(config.firebaseConfig)
 
 // console.log(sql)
