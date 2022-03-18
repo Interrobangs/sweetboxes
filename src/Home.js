@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import  Picker from 'emoji-picker-react'
 import styled from 'styled-components'
+import {getAuth, signOut} from 'firebase/auth'
 
 const Container = styled.div`
   margin: 10px;
@@ -123,6 +124,7 @@ function DateNow(){
 }
 
 function Home() {
+  const auth = getAuth()
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [boxes, setBoxes] = useState([]);
   const onEmojiClick = (e, obj) => {
@@ -131,6 +133,7 @@ function Home() {
   }
   return (
     <>
+      <button onClick={()=>{signOut(auth)}}>Sign Out</button>
       <DateNow/>
       <Container>
         { boxes.map(({ content }, i) => (
