@@ -36,7 +36,7 @@ const Child = param => {
     const [showContinue, setShowContinue] = useState(false);
     const [removeInput, setRemoveInput] = useState(false);
     const handleKeyContinue = (e) => {
-        if (ref.current.value !== '' && e.key === 'Enter' || e.type === 'click') { 
+        if (ref.current.value !== '' && (e.key === 'Enter' || e.type === 'click')) { 
             console.log()
             param.setName(ref.current.value);
             setShowContinue(false);
