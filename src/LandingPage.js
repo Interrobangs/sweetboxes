@@ -32,12 +32,27 @@ const LandingPage = param => {
     );
 }
 const Child = param => {
+    function onlySpaces(str) {
+        return str.trim().length !== 0;
+    }
+    function isValidFirstname(str) {
+        if (
+            typeof str !== "string" ||
+            /[0-9]+/g.test(str)
+        ) {
+            return false; 
+        }
+        return true;
+    }
+    function hasSymbols(str){
+        const format = /[ `!@#€卐$%^&§*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return !format.test(str)
+    }
     const ref = useRef();
     const [showContinue, setShowContinue] = useState(false);
     const [removeInput, setRemoveInput] = useState(false);
     const handleKeyContinue = (e) => {
-        if (ref.current.value !== '' && (e.key === 'Enter' || e.type === 'click')) { 
-            console.log()
+        if ((ref.current.value !== '' && onlySpaces(ref.current.value) && isValidFirstname(ref.current.value) && hasSymbols(ref.current.value)) && (e.key === 'Enter' || e.type === 'click')) { 
             param.setName(ref.current.value);
             setShowContinue(false);
             setRemoveInput(true);
