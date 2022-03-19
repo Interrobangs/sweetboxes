@@ -22,7 +22,7 @@ function App(){
                     path='/'
                     element={
                         <AuthRoute>
-                            <img src={userInfo.photo}/>
+                            <img src={userInfo.photo} alt='Profile Photo'/>
                             <br/>
                             Account: {userInfo.name}
                             <br/>
