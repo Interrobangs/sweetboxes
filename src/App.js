@@ -22,7 +22,7 @@ function App(){
                     path='/'
                     element={
                         <AuthRoute>
-                            <img src={userInfo.photo} alt='Profile Photo'/>
+                            <img src={userInfo.photo} aria-hidden alt='Profile Picture' />
                             <br/>
                             Account: {userInfo.name}
                             <br/>
