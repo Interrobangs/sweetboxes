@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import  Picker from 'emoji-picker-react'
 import styled from 'styled-components'
-import {getAuth, signOut} from 'firebase/auth'
+import { getAuth, signOut } from 'firebase/auth'
 
 const Container = styled.div`
   margin: 10px;
@@ -39,7 +39,6 @@ function Box({ children, k, disableCounter, ...props }) {
         <>
           <div>
             {boxState.counter.length}
-            {console.log(boxState.counter.length)}
           </div>
           <button onClick={() => setBoxState({
         ...boxState,
@@ -133,7 +132,7 @@ function Home() {
   }
   return (
     <>
-      <button onClick={()=>{signOut(auth)}}>Sign Out</button>
+      <button onClick={()=>{ signOut(auth) }}>Sign Out</button>
       <DateNow/>
       <Container>
         { boxes.map(({ content }, i) => (

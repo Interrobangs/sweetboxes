@@ -7,14 +7,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import AuthRoute from "./components/AuthRoute"
 import Login from "./Login"
 import { useState } from "react"
-import { config } from './config/config'
-import { initializeApp } from 'firebase/app'
-
-initializeApp(config.firebaseConfig)
 
 function App(){
     const [userInfo, setUserInfo] = useState({});
-    
+
     return (
         <BrowserRouter>
             <Routes>
