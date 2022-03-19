@@ -21,7 +21,7 @@ const StyledWhatIsYourNameContinue = styled(StyledWhatIsYourNameText)`
     opacity: 1;
     color: #fff;
 `;
-const LandingPage = param => {
+const LandingPage = (param) => {
     return (
         <StyledWhatIsYourNameContainer>
             <StyledWhatIsYourNameText>
@@ -66,14 +66,14 @@ const Child = param => {
         <>
             {removeInput ? '' :
                 <div>
-                <StyledWhatIsYourNameInput
-                    placeholder='Your name'
-                    ref={ref}
-                    onKeyDown={handleKeyContinue}
-                    onChange={onChangeHandler}
-                     />
+                    <StyledWhatIsYourNameInput
+                        placeholder='Your name'
+                        ref={ref}
+                        onKeyDown={handleKeyContinue}
+                        onChange={onChangeHandler}
+                    />
                 </div>
-                     }
+            }
             {showContinue ? <StyledWhatIsYourNameContinue onClick={handleKeyContinue}>Press ⎆</StyledWhatIsYourNameContinue> : ''}
         </>
     );

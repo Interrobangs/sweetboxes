@@ -3,31 +3,18 @@ import "./App.css"
 // import { StyledWhatIsYourNameText } from './StyledWhatIsYourNameText';
 // import styled from 'styled-components'
 import Home from './Home'
-import { initializeApp } from 'firebase/app'
-import { config } from './config/config'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import AuthRoute from "./components/AuthRoute"
 import Login from "./Login"
+import { useState } from "react"
+import { config } from './config/config'
+import { initializeApp } from 'firebase/app'
 
 initializeApp(config.firebaseConfig)
 
-// console.log(sql)
-// async () => {
-//     try {
-//         // make sure that any items are correctly URL encoded in the connection string
-//         await sql.connect('Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true')
-//         const result = await sql.query`select * from mytable where id = ${value}`
-//         console.dir(result)
-//     } catch (err) {
-//         // ... error checks
-//     }
-// }
-
-// const StyledFrontpageButton = styled.button`
-//     color: white;
-//     background-color: black ;
-// `
 function App(){
+    const [userInfo, setUserInfo] = useState({});
+    
     return (
         <BrowserRouter>
             <Routes>
@@ -35,6 +22,10 @@ function App(){
                     path='/'
                     element={
                         <AuthRoute>
+                            <img src={userInfo.photo}/>
+                            <br/>
+                            Account: {userInfo.name}
+                            <br/>
                             <Home/>
                         </AuthRoute>
                     }
@@ -42,13 +33,13 @@ function App(){
                 <Route
                     path='/login'
                     element = {
-                        <Login/>
+                        <Login userInfo={userInfo} setUserInfo={setUserInfo}/>
                     }
                 />
             </Routes>
         </BrowserRouter>
     )
-    // const [name, setName] = useState('');
+    // 
     // const [confirm, setConfirm] = useState(false)
     // return (
     //     confirm ? (

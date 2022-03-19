@@ -1,8 +1,11 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import { 
+        getAuth, 
+        GoogleAuthProvider, 
+        signInWithPopup} from "firebase/auth"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Login = () => {
+const Login = (params) => {
     const auth = getAuth()
     const navigate = useNavigate()
     const [authing, setAuthing] = useState(false)
@@ -10,7 +13,14 @@ const Login = () => {
         setAuthing(true)
         signInWithPopup(auth, new GoogleAuthProvider())
         .then(response => {
-            console.log(response.user.uid)
+            params.setUserInfo({
+                photo: response.user.photoURL,
+                name: response.user.displayName,
+                email: response.user.email,
+                id: response.user.uid
+            })
+            const file = JSON.stringify(params.userInfo)
+            console.log(file)
             navigate('/')
         })
         .catch(error => {
