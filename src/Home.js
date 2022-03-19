@@ -122,7 +122,7 @@ function DateNow(){
   )
 }
 
-function Home() {
+const Home = params => {
   const auth = getAuth()
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [boxes, setBoxes] = useState([]);
@@ -131,7 +131,11 @@ function Home() {
     showEmojiPicker ? setShowEmojiPicker(false) : setShowEmojiPicker(true)
   }
   return (
-    <>
+    <>              
+      <img src={params.userInfo.photo} aria-hidden alt='Profile Picture' />
+      <br/>
+      Account: {params.userInfo.name}
+      <br/>
       <button onClick={()=>{ signOut(auth) }}>Sign Out</button>
       <DateNow/>
       <Container>
