@@ -1,7 +1,7 @@
 import {  useState } from 'react'
 // import  Picker from 'emoji-picker-react'
 import styled from 'styled-components'
-import { signOut } from 'firebase/auth'
+import { deleteUser, signOut } from 'firebase/auth'
 import { useInterval } from './useInterval'
 import { getDateNow } from './getDateNow'
 import { auth } from './Firebase'
@@ -31,6 +31,7 @@ const Home = params => {
       Brugernavn: {params.userInfo.name}
       <br/>
       <button onClick={()=>{ signOut(auth) }}>Log ud</button>
+      <button onClick={()=>{ deleteUser(auth.currentUser) }}>Log ud og slet bruger</button>
       <DateNow/>
       {/* <Read userInfo={params.userInfo.userId} /> */}
       <Container>
