@@ -1,6 +1,5 @@
 import { collection } from "@firebase/firestore"
-
-import { db, firestore } from "./Firebase";
+import { firestore } from "./Firebase";
 import { getDocs } from "@firebase/firestore"
 const Read = () => {
     const collectionRef = collection(firestore, "users");
@@ -8,7 +7,7 @@ const Read = () => {
         const data = await getDocs(collectionRef);
         let values = []; // place to store your collection data
         data.docs.map((doc) => {
-            values.push({ ...doc.data(), id: doc.id });
+            return values.push({ ...doc.data(), id: doc.id });
         });
         console.log(values)
     };

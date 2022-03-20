@@ -16,14 +16,14 @@ const Login = params => {
                 photo: response.user.photoURL,
                 name: response.user.displayName,
                 email: response.user.email,
-                id: response.user.uid
+                userId: response.user.uid
             })
         addDoc(userInfoColRef, {
             user: [{ 
                 photo: response.user.photoURL,
                 name: response.user.displayName,
                 email: response.user.email,
-                id: response.user.uid,
+                userId: response.user.uid,
                 date: new Date()
             }]
         });
