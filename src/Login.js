@@ -1,32 +1,41 @@
-import { signInWithPopup} from "firebase/auth"
+import { signInWithPopup } from "firebase/auth"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { collection, addDoc } from "firebase/firestore"; 
-import { auth, db, provider} from "./Firebase";
+// import { collection } from "firebase/firestore"; 
+// import { addDoc } from "firebase/firestore"; 
+import { auth, provider} from "./Firebase";
 
-const Login = params => {
+const Login = () => {
     const navigate = useNavigate()
     const [authing, setAuthing] = useState(false)
-    const userInfoColRef = collection(db, 'users')
+    // const userInfoColRef = collection(db, 'users')
     const signInWithGoogle = async () => {
         setAuthing(true)
         signInWithPopup(auth, provider)
-        .then(response => {
-            params.setUserInfo({
-                photo: response.user.photoURL,
-                name: response.user.displayName,
-                email: response.user.email,
-                userId: response.user.uid
-            })
-        addDoc(userInfoColRef, {
-            user: [{ 
-                photo: response.user.photoURL,
-                name: response.user.displayName,
-                email: response.user.email,
-                userId: response.user.uid,
-                date: new Date()
-            }]
-        });
+        .then(() => {
+            // auth.currentUser.getIdToken().then((idToken) => {  // <------ Check this line
+            //     console.log(1)
+            //     params.setUserInfo({
+            //         token: idToken
+            //     })
+            //     return undefined
+            // });
+            // params.setUserInfo({
+            //     photo: response.user.photoURL,
+            //     name: response.user.displayName,
+            //     email: response.user.email,
+            //     userId: response.user.uid
+            // })
+        // addDoc(userInfoColRef, {
+        //     user: [{ 
+        //         photo: response.user.photoURL,
+        //         name: response.user.displayName,
+        //         email: response.user.email,
+        //         userId: response.user.uid,
+        //         date: new Date()
+        //     }]
+        // });
+        
         navigate('/')
         })
         .catch(error => {

@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import {  useState } from 'react'
 // import  Picker from 'emoji-picker-react'
 import styled from 'styled-components'
-import { getAuth, signOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth'
 import { useInterval } from './useInterval'
 import { getDateNow } from './getDateNow'
-import Read from './Read'
+import { auth } from './Firebase'
 
 const Container = styled.div`
   margin: 10px;
@@ -23,9 +23,7 @@ function DateNow(){
     </div>
   )
 }
-
 const Home = params => {
-  const auth = getAuth()
   return (
     <>              
       <img src={params.userInfo.photo} aria-hidden alt='Profile Picture' />
@@ -34,7 +32,7 @@ const Home = params => {
       <br/>
       <button onClick={()=>{ signOut(auth) }}>Sign Out</button>
       <DateNow/>
-      <Read/>
+      {/* <Read userInfo={params.userInfo.userId} /> */}
       <Container>
       </Container>
     </>

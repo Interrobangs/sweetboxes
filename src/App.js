@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Home from './Home'
 import Login from './Login'
 import AuthRoute from './components/AuthRoute'
+// import { auth } from './Firebase'
 
 function App(){
     const [userInfo, setUserInfo] = useState({});
@@ -13,7 +14,7 @@ function App(){
                 <Route
                     path = '/'
                     element = {
-                        <AuthRoute>
+                        <AuthRoute setUserInfo = { setUserInfo } >
                             <Home userInfo = { userInfo } />
                         </AuthRoute>
                     }
