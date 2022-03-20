@@ -24,7 +24,7 @@ const AuthRoute = (params) => {
         return () => AuthCheck();
     // eslint-disable-next-line
     }, [auth]);
-    if (loading) return <p>Loading ...</p>
+    if (loading) return <p>Indlæser fra database ...</p>
     return <>{children}</>;
 };
 

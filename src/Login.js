@@ -44,10 +44,10 @@ const Login = () => {
         })
     }
     return <>
-        <p>Login Page</p>
+        <p>Loginside</p>
         <button onClick={() => 
             signInWithGoogle()
-        } disabled={authing}>Sign in with Google</button>
+        } disabled={authing}>Log ind med Google</button>
     </>
 }
 

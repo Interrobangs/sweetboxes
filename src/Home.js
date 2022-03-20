@@ -28,9 +28,9 @@ const Home = params => {
     <>              
       <img src={params.userInfo.photo} aria-hidden alt='Profile Picture' />
       <br/>
-      Account: {params.userInfo.name}
+      Brugernavn: {params.userInfo.name}
       <br/>
-      <button onClick={()=>{ signOut(auth) }}>Sign Out</button>
+      <button onClick={()=>{ signOut(auth) }}>Log ud</button>
       <DateNow/>
       {/* <Read userInfo={params.userInfo.userId} /> */}
       <Container>
