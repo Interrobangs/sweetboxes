@@ -1,20 +1,16 @@
-import { 
-        getAuth, 
-        GoogleAuthProvider, 
-        signInWithPopup} from "firebase/auth"
+import { signInWithPopup} from "firebase/auth"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { collection, addDoc } from "firebase/firestore"; 
-import { db } from "./Firebase";
+import { auth, db, provider} from "./Firebase";
 
-const Login = (params) => {
-    const auth = getAuth()
+const Login = params => {
     const navigate = useNavigate()
     const [authing, setAuthing] = useState(false)
-    const userInfoColRef = collection(db, 'logins')
+    const userInfoColRef = collection(db, 'users')
     const signInWithGoogle = async () => {
         setAuthing(true)
-        signInWithPopup(auth, new GoogleAuthProvider())
+        signInWithPopup(auth, provider)
         .then(response => {
             params.setUserInfo({
                 photo: response.user.photoURL,

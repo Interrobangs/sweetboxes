@@ -1,28 +1,27 @@
-import "./App.css"
+import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
 import Home from './Home'
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import AuthRoute from "./components/AuthRoute"
-import Login from "./Login"
-import { useState } from "react"
+import Login from './Login'
+import AuthRoute from './components/AuthRoute'
 
 function App(){
     const [userInfo, setUserInfo] = useState({});
-
     return (
         <BrowserRouter>
             <Routes>
                 <Route
-                    path='/'
-                    element={
+                    path = '/'
+                    element = {
                         <AuthRoute>
-                            <Home userInfo={userInfo} />
+                            <Home userInfo = { userInfo } />
                         </AuthRoute>
                     }
                 />
                 <Route
-                    path='/login'
+                    path = '/login'
                     element = {
-                        <Login userInfo={userInfo} setUserInfo={setUserInfo}/>
+                        <Login userInfo = { userInfo } setUserInfo = { setUserInfo }/>
                     }
                 />
             </Routes>
