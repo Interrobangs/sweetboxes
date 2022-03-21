@@ -1,8 +1,7 @@
 // function add0(num){
 //   return num < 10 ? '0' + num : num
 // }
-export function getDateNow() {
-  const date = new Date();
+export function getDateNow(date) {
   // request a weekday along with a long date
   var options = {
     weekday: 'long',

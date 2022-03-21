@@ -1,6 +1,7 @@
 import { useState, Fragment } from 'react';
 import { db } from "./Firebase";
 import { getDoc, doc, setDoc, arrayUnion } from "@firebase/firestore";
+import { createGuid } from './createGuid';
 
 export const ToDoList = (params) => {
   const docRef = doc(db, "todos", params.userInfo.userId);
@@ -19,13 +20,7 @@ export const ToDoList = (params) => {
     }
   };
 
-  function createGuid() {  
-    function _p8(s) {  
-       var p = (Math.random().toString(16)+"000000000").substr(2,8);  
-       return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;  
-    }  
-    return _p8() + _p8(true) + _p8(true) + _p8();  
- }  
+
   
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
@@ -95,12 +90,12 @@ export const ToDoList = (params) => {
     <br />
     {params.userInfo.name + "'s todo-list"}
     <br />
-    <button style={{ cursor: 'pointer' }} onClick={() => { setToDo([]); getSingleCollectionData(); }}>Hent ToDo</button>
+    <button onClick={() => { setToDo([]); getSingleCollectionData(); }}>Hent ToDo</button>
     <br />
     <input
       placeholder='Ny ToDo'
       onChange={onChangeHandler} />
-    <button style={{ cursor: 'pointer' }} disabled={newToDo.length < 1 ? true : false} onClick={() => { setToDo([]); addItem(); }}>Tilføj ToDo-element</button>
+    <button disabled={newToDo.length < 1 ? true : false} onClick={() => { setToDo([]); addItem(); }}>Tilføj ToDo-element</button>
     <br />
     <br />
     {"To Do's: " + toDo.length}
@@ -110,7 +105,7 @@ export const ToDoList = (params) => {
       const text = item.checked ? <div style={{ textDecorationLine: 'line-through' }}>{item.value}</div> : <div>{item.value}</div>;
       return <Fragment key={item.key}>
         {text}
-        <input style={{ cursor: 'pointer' }}
+        <input
           type='checkbox'
           onChange={(e) => checkboxHandler(item.key, e.target.checked, item.value, item.count)}
           defaultChecked={item.checked} />
