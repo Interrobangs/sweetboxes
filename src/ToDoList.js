@@ -20,7 +20,6 @@ export const ToDoList = (params) => {
   };
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
-    const docRef = doc(db, "todos", params.userInfo.userId);
     const newCount = toDo.length != 0 ? toDo[toDo.length - 1].count + 1 : 0;
     setDoc(doc(db, "todos", params.userInfo.userId), {
       list: arrayUnion({
