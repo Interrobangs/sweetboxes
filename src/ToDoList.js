@@ -20,8 +20,9 @@ export const ToDoList = (params) => {
   };
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
-    console.log('add item')
+    console.log(crypto.randomuuid())
     const newCount = toDo.length !== 0 ? toDo[toDo.length - 1].count + 1 : 0;
+    console.log('made counter')
     setDoc(doc(db, "todos", params.userInfo.userId), {
       list: arrayUnion({
         key: crypto.randomUUID(),
@@ -32,6 +33,7 @@ export const ToDoList = (params) => {
     }, { merge: true });
     console.log('reload items')
     getSingleCollectionData();
+    console.log('reload items done')
   };
   const onChangeHandler = (e) => {
     setNewToDo(e.target.value);
