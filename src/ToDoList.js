@@ -10,7 +10,7 @@ export const ToDoList = (params) => {
     const data = await getDoc(docRef);
     if (data.exists()) {
       data.data().list.map((e) => {
-        values.push(e);
+        return values.push(e);
       });
       return setToDo(values.sort(sortByCount));
     } else {
@@ -20,7 +20,7 @@ export const ToDoList = (params) => {
   };
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
-    const newCount = toDo.length != 0 ? toDo[toDo.length - 1].count + 1 : 0;
+    const newCount = toDo.length !== 0 ? toDo[toDo.length - 1].count + 1 : 0;
     setDoc(doc(db, "todos", params.userInfo.userId), {
       list: arrayUnion({
         key: crypto.randomUUID(),
@@ -48,9 +48,9 @@ export const ToDoList = (params) => {
     const data = await getDoc(docRef);
     if (data.exists()) {
       data.data().list.map((e) => {
-        if (e.key != key) {
-          values.push(e);
-        }
+        if (e.key !== key) {
+          return values.push(e);
+        }else return <></>
       });
     }
     values = values.sort(sortByCount);
@@ -71,9 +71,9 @@ export const ToDoList = (params) => {
     const data = await getDoc(docRef);
     if (data.exists()) {
       data.data().list.map((e) => {
-        if (e.key != key) {
-          values.push(e);
-        }
+        if (e.key !== key) {
+          return values.push(e);
+        }else return <></>
       });
     }
     values = values.sort(sortByCount);
