@@ -91,6 +91,7 @@ export const ToDoList = (params) => {
     <input
       placeholder='Ny ToDo'
       onChange={onChangeHandler} />
+      {newToDo.length < 1 ? 'true' : 'false'}
     <button disabled={newToDo.length < 1 ? true : false} onClick={() => { setToDo([]); addItem(); }}>Tilføj ToDo-element</button>
     <br />
     <br />
