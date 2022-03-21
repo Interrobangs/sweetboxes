@@ -27,12 +27,9 @@ export const ToDoList = (params) => {
     return _p8() + _p8(true) + _p8(true) + _p8();  
  }  
   
- console.log(createGuid())
-  
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
     const newCount = toDo.length !== 0 ? toDo[toDo.length - 1].count + 1 : 0;
-    console.log('made counter')
     setDoc(doc(db, "todos", params.userInfo.userId), {
       list: arrayUnion({
         key: createGuid(),
@@ -41,9 +38,7 @@ export const ToDoList = (params) => {
         count: newCount
       })
     }, { merge: true });
-    console.log('reload items')
     getSingleCollectionData();
-    console.log('reload items done')
   };
   const onChangeHandler = (e) => {
     setNewToDo(e.target.value);

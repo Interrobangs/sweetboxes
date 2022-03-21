@@ -40,7 +40,7 @@ const Login = () => {
         //     born: 1815
         // });
         
-            navigate('/')
+        navigate('/')
         })
         .catch(error => {
             console.log(error)
