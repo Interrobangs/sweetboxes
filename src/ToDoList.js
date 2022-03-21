@@ -86,13 +86,13 @@ export const ToDoList = (params) => {
     <br />
     {params.userInfo.name + "'s todo-list"}
     <br />
-    <button onClick={() => { setToDo([]); getSingleCollectionData(); }}>Hent ToDo</button>
+    <button style={{ cursor: 'pointer' }} onClick={() => { setToDo([]); getSingleCollectionData(); }}>Hent ToDo</button>
     <br />
     <input
       placeholder='Ny ToDo'
       onChange={onChangeHandler} />
       {newToDo.length < 1 ? 'true' : 'false'}
-    <button disabled={newToDo.length < 1 ? true : false} onClick={() => { setToDo([]); addItem(); }}>Tilføj ToDo-element</button>
+    <button style={{ cursor: 'pointer' }} disabled={newToDo.length < 1 ? true : false} onClick={() => { setToDo([]); addItem(); }}>Tilføj ToDo-element</button>
     <br />
     <br />
     {"To Do's: " + toDo.length}
@@ -102,7 +102,7 @@ export const ToDoList = (params) => {
       const text = item.checked ? <div style={{ textDecorationLine: 'line-through' }}>{item.value}</div> : <div>{item.value}</div>;
       return <Fragment key={item.key}>
         {text}
-        <input
+        <input style={{ cursor: 'pointer' }}
           type='checkbox'
           onChange={(e) => checkboxHandler(item.key, e.target.checked, item.value, item.count)}
           defaultChecked={item.checked} />
