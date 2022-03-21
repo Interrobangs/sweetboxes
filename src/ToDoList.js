@@ -20,6 +20,7 @@ export const ToDoList = (params) => {
   };
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
+    console.log('add item')
     const newCount = toDo.length !== 0 ? toDo[toDo.length - 1].count + 1 : 0;
     setDoc(doc(db, "todos", params.userInfo.userId), {
       list: arrayUnion({
@@ -29,6 +30,7 @@ export const ToDoList = (params) => {
         count: newCount
       })
     }, { merge: true });
+    console.log('reload items')
     getSingleCollectionData();
   };
   const onChangeHandler = (e) => {
