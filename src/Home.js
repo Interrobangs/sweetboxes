@@ -1,38 +1,22 @@
-import {  useState } from 'react'
 // import  Picker from 'emoji-picker-react'
-import styled from 'styled-components'
 import { deleteUser, signOut } from 'firebase/auth'
-import { useInterval } from './useInterval'
-import { getDateNow } from './getDateNow'
 import { auth } from './Firebase'
+import { DateNow } from './DateNow'
+import { Container } from './Container'
+import { ToDoList } from './ToDoList'
 
-const Container = styled.div`
-  margin: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 3vh;
-`
-function DateNow(){
-  const [date, setDate] = useState([getDateNow()])
-  useInterval(() => {
-    setDate(getDateNow())
-  }, 1000)
-  return (
-    <div>
-      {date}
-    </div>
-  )
-}
 const Home = params => {
   return (
     <>              
       <img src={params.userInfo.photo} aria-hidden alt='Profile Picture' />
+      <DateNow/>
       <br/>
       Brugernavn: {params.userInfo.name}
       <br/>
       <button onClick={()=>{ signOut(auth) }}>Log ud</button>
       <button onClick={()=>{ deleteUser(auth.currentUser) }}>Log ud og slet bruger</button>
-      <DateNow/>
+      <br/>
+      <ToDoList userInfo={params.userInfo} />
       {/* <Read userInfo={params.userInfo.userId} /> */}
       <Container>
       </Container>
