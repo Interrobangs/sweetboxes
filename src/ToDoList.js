@@ -18,14 +18,20 @@ export const ToDoList = (params) => {
       console.log("No such document!");
     }
   };
+
+  function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  }
+  
   const [toDo, setToDo] = useState([]);
   const addItem = () => {
-    console.log(crypto.randomuuid())
     const newCount = toDo.length !== 0 ? toDo[toDo.length - 1].count + 1 : 0;
     console.log('made counter')
     setDoc(doc(db, "todos", params.userInfo.userId), {
       list: arrayUnion({
-        key: crypto.randomUUID(),
+        key: uuidv4(),
         value: newToDo,
         checked: false,
         count: newCount
