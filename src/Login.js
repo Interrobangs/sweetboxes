@@ -1,7 +1,7 @@
-import { signInWithPopup } from "firebase/auth"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { auth, provider} from "./Firebase";
+import { signInWithPopup } from 'firebase/auth'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { auth, provider} from './Firebase';
 const Login = () => {
     const navigate = useNavigate()
     const [authing, setAuthing] = useState(false)

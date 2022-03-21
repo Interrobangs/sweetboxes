@@ -9,7 +9,7 @@ import { ToDoList } from './ToDoList'
 import { deleteUser } from 'firebase/auth'
 import { auth } from './Firebase'
 import DaysTo from './DaysTo'
-
+import Counter from './Counter'
 function App(){
     const Links = ()=>{
         return (
@@ -17,7 +17,8 @@ function App(){
                 <Link to="/">Home</Link>
                 <Link to="/todos">ToDoList</Link>
                 <Link to="/daysto">DaysTo</Link>
-                <Link to="/settings">Settings</Link>
+                <Link to="/counter">Tæller</Link>
+                <Link to="/settings">Indstillinger</Link>
             </>
         )
     }
@@ -42,6 +43,17 @@ function App(){
                             <Home userInfo = { userInfo } />
                             <Links/>
                             <ToDoList userInfo={userInfo} />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path = '/counter'
+                    element = {
+                        <AuthRoute setUserInfo = { setUserInfo } >
+                            <Home userInfo = { userInfo } />
+                            <Links/>
+                            <Counter userInfo = { userInfo } />
+                            <br/>
                         </AuthRoute>
                     }
                 />

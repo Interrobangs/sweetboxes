@@ -1,6 +1,6 @@
 import { useState, Fragment } from 'react';
-import { db } from "./Firebase";
-import { doc, getDoc, setDoc, arrayUnion } from "@firebase/firestore";
+import { db } from './Firebase';
+import { doc, getDoc, setDoc, arrayUnion } from '@firebase/firestore';
 import { createGuid } from './createGuid';
 
 import { useInterval } from './useInterval';
@@ -8,10 +8,8 @@ import { useInterval } from './useInterval';
 
 
 const DaysTo = (params) => {
-
     const [eventCollection, setEventCollection] = useState([])
-    
-    const docRef = doc(db, "daysto", params.userInfo.userId);
+    const docRef = doc(db, 'daysto', params.userInfo.userId);
     const getSingleCollectionData = async () => {
         let values = [];
         const data = await getDoc(docRef);
@@ -21,7 +19,7 @@ const DaysTo = (params) => {
           });
           return setEventCollection(values)
         } else {
-            console.log("No such document!");
+            console.log('No such document!');
             return setEventCollection(values)
         }
       };
@@ -40,7 +38,7 @@ const DaysTo = (params) => {
             }else return <></>
           });
         }
-        setDoc(doc(db, "daysto", params.userInfo.userId), {
+        setDoc(doc(db, 'daysto', params.userInfo.userId), {
           list: values
         });
         getSingleCollectionData();
@@ -55,7 +53,7 @@ const DaysTo = (params) => {
         }
     )
     return <>
-        <input type='datetime-local' step="1" onChange={(e)=>{
+        <input type='datetime-local' step='1' onChange={(e)=>{
             setEvent({...event, date: e.target.value})}
         }/>
         <input placeholder='Ny tidsforskydning' type='text' onChange={(e)=>{
@@ -69,7 +67,7 @@ const DaysTo = (params) => {
                     date: event.date,
                     text: event.text
                 }
-                setDoc(doc(db, "daysto", params.userInfo.userId), {
+                setDoc(doc(db, 'daysto', params.userInfo.userId), {
                   list: arrayUnion({
                     key: obj.key,
                     date: obj.date,
@@ -101,7 +99,7 @@ const DaysTo = (params) => {
                         <Fragment key={e.key}>
                             <div>{e.text}</div>
                             <div>{e.date} </div>
-                            <div>{days + " days, " + hours + " hours, " + mins + " minutes, " + seconds + " seconds"}</div>
+                            <div>{days + ' days, ' + hours + ' hours, ' + mins + ' minutes, ' + seconds + ' seconds'}</div>
                             <button onClick={() => { removeItem(e.key); }}>Slet</button>
                         </Fragment>
                     )
